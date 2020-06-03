@@ -1,0 +1,7 @@
+[book]
+authors = ["TENX"]
+language = "zh-CN"
+multilingual = true
+src = "src"
+title = "《Programming Rust》中文版"
+
