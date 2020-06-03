@@ -79,7 +79,7 @@ Rust是一门系统级编程语言
 > 译者注：|...|表示略去了不重要的部分，通常是与编程无关的主题，下同。
 
 ## 使用代码示例
-补充材料(代码示例、练习等)可从https://github.com/oreillymedia/programming_rust下载。
+补充材料(代码示例、练习等)可从https://github.com/oreillymedia/programming_rust 下载。
 
 
 |...|
