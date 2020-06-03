@@ -7,10 +7,10 @@
 
 ## 如何阅读
 - [推荐]请确保你的Rust版本>=1.39并且安装了Cargo
-- - 将本仓库克隆到本地: `git clone https://github.com/TENX-S/Programming-Rust-Translation.git`
-- - 切换到该仓库工作目录 `cd Programming-Rust-Translation`
-- - 构建本书 `mdbook serve`
-- - 根据提示访问: http://localhost:3000 或其他
+    - 将本仓库克隆到本地: `git clone https://github.com/TENX-S/Programming-Rust-Translation.git`
+    - 切换到该仓库工作目录 `cd Programming-Rust-Translation`
+    - 构建本书 `mdbook serve`
+    - 根据提示访问: http://localhost:3000 或其他
 
 - [计划中] 部署到网络上
 
