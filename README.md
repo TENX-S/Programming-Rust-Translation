@@ -5,8 +5,18 @@
 《Programming Rust》对Rust初学者非常友好，然而遗憾的是，到目前为止(2020/06/03)这本书国内还没有译版，故我们决定翻译此书，来帮助那些可能还不习惯阅读英文技术文档但又想学习Rust的人。
 
 
+## 如何阅读
+- [推荐]请确保你的Rust版本>=1.39并且安装了Cargo
+- - 将本仓库克隆到本地: `git clone https://github.com/TENX-S/Programming-Rust-Translation.git`
+- - 切换到该仓库工作目录 `cd Programming-Rust-Translation`
+- - 构建本书 `mdbook serve`
+- - 根据提示访问: http://localhost:3000 或其他
+
+- [计划中] 部署到网络上
+
 ## 构建工具
 我们使用的是Rust官方出品的，专为发布文档而设计的[mdbook](https://github.com/rust-lang/mdBook)
+
 
 ## 目标读者
 我们假定读者：
