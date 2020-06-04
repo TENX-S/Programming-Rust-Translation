@@ -36,7 +36,13 @@
 ## 作者
 
 
-<a href="https://github.com/TENX-S"><img src="https://avatars1.githubusercontent.com/u/40336192?s=460&amp" width="60px"></a>
+<a
+    href="https://github.com/TENX-S">
+    <img src="https://avatars1.githubusercontent.com/u/40336192?s=460&amp" width="60px">
+</a><a
+    href="https://github.com/KallenW">
+    <img src="https://avatars2.githubusercontent.com/u/66395882?s=460&amp" width="60px">
+</a>
 
 
 ## LICENSE
