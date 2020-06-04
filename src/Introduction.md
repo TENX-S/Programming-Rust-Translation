@@ -1,4 +1,4 @@
-<h1 align="center">译者们的话</h1>
+<h1 align="center">译者序</h1>
 
 
 ## 动机
