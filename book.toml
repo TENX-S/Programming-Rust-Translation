@@ -5,3 +5,5 @@ multilingual = true
 src = "src"
 title = "《Programming Rust》中文版"
 
+[output.html]
+default-theme = "rust"
