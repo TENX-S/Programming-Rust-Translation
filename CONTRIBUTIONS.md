@@ -2,8 +2,8 @@
 
 
 ## 译文的组织方式
-全书的主要内容可概括为序言+21个章节，这些也是需要翻译的主体，每一章(chapter)下都有不同的节(section)，有的节或许会分成几段(paragraph)，或许没有。
-src/下除去SUMMARY.md和img/，共有464个md文档，即464个节或段。
+全书的主要内容可概括为序言+21个章节，即需要翻译的主体，每一章(chapter)下都有不同的节(section)，有的节或许会分成几段(paragraph)，或许没有。
+src/下除SUMMARY.md，Introduction.md和img/之外，共有464个md文档，即464个节或段。
 
 
 ## 更新日志
