@@ -16,7 +16,7 @@
 - [计划中] 部署到网络上
 
 ## 构建工具
-我们使用的是Rust官方出品的，专为发布文档而设计的[mdbook](https://github.com/rust-lang/mdBook)
+我们使用的是Rust官方出品的，专为发布文档而设计的[mdbook](https://github.com/rust-lang/mdBook)。
 
 
 ## 目标读者
