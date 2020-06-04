@@ -197,7 +197,7 @@
     - [在类型间定义关系的trait](chapter_11/TraitsThatDefineRelationshipsBetweenTypes/traits_that_define_relationships_between_types.md)
         - [关联类型(iterator是怎么运行的)](chapter_11/TraitsThatDefineRelationshipsBetweenTypes/associated_types_or_how_iterators_work.md)
         - [泛型trait(操作符重载的机理)](chapter_11/TraitsThatDefineRelationshipsBetweenTypes/generic_traits_or_how_operator_overloading_works.md)
-        - [密友trait(rand::random()是怎么实现的)](chapter_11/TraitsThatDefineRelationshipsBetweenTypes/buddy_traits_or_how_rand::random()_works.md)
+        - [密友trait(rand::random()是怎么实现的)](chapter_11/TraitsThatDefineRelationshipsBetweenTypes/buddy_traits_or_how_rand_random_works.md)
     - [对绑定的逆向工程](chapter_11/reverse-engineering_bounds.md)
     - [总结](chapter_11/conclusion.md)
 
