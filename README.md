@@ -7,16 +7,13 @@
 
 ## 如何阅读
 - [推荐]请确保你的Rust版本>=1.39并且安装了Cargo
-    - 安装官方构建工具: `cargo install mdbook`
+    - 安装[官方构建工具](https://github.com/rust-lang/mdBook): `cargo install mdbook`
     - 将本仓库克隆到本地: `git clone https://github.com/TENX-S/Programming-Rust-Translation.git`
     - 切换到该仓库工作目录 `cd Programming-Rust-Translation`
     - 构建本书 `mdbook serve`
     - 根据提示访问: http://localhost:3000 或其他
 
 - [计划中] 部署到网络上。
-
-## 构建工具
-我们使用的是Rust官方出品的，专为发布文档而设计的[mdbook](https://github.com/rust-lang/mdBook)。
 
 
 ## 目标读者
