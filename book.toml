@@ -7,3 +7,6 @@ title = "《Programming Rust》中文版"
 
 [output.html]
 default-theme = "rust"
+
+[output.html.fold]
+enable = true
