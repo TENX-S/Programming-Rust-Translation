@@ -27,7 +27,7 @@
 我们的观点是，如果你不具备上述基础，学习Rust的效率将会非常低下，比难懂的更糟的是，你形成了错误的第一印象，这也许会对你以后的学习历程产生难以预料的影响。
 
 ## 加入我们!
-这个[项目](https://github.com/TENX-S/Programming-Rust-Translation)将会一直开源，如果您对Rust有相当程度的了解并对英语翻译有信心，欢迎提交您的issues或译文，您的翻译将会影响所有阅读此书的人，我们欢迎所有有能力，有信心的人。[如何贡献？](https://github.com/TENX-S/Programming-Rust-Translation/blob/master/CONTRIBUTIONS.md)
+这个[项目](https://github.com/TENX-S/Programming-Rust-Translation)将会一直开源，如果您对Rust有相当程度的了解并对英语翻译有信心，欢迎提交您的issues或译文，您的翻译将会影响所有阅读此书的人，我们欢迎所有有能力，有信心的人。[如何贡献？](https://github.com/TENX-S/Programming-Rust-Translation/blob/master/CONTRIBUTING.md)
 
 
 ## 作者
