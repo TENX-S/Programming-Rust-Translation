@@ -13,7 +13,7 @@
     - 构建本书 `mdbook serve`
     - 根据提示访问: http://localhost:3000 或其他
 
-- [在线版本] 记得收藏本网站:)
+- [在线版本] [记得收藏本网站哟](https://tenxs.life)
 
 
 ## 目标读者
