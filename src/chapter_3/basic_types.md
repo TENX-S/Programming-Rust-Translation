@@ -1,4 +1,4 @@
-<h1 align="right">基本类型</h1>
+# 基本类型
 <p align="right" style="font-style: Italic;">世界上有许多种好书是因为有很多种人，并且每个人都想读点与众不同的东西。</p>
 <br /><p align="right">—Lemony Snicket<p>
 

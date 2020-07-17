@@ -147,7 +147,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 align="right">基本类型</h1>
+                        <h1><a class="header" href="#基本类型" id="基本类型">基本类型</a></h1>
 <p align="right" style="font-style: Italic;">世界上有许多种好书是因为有很多种人，并且每个人都想读点与众不同的东西。</p>
 <br /><p align="right">—Lemony Snicket<p>
 <p>Rust的基本类型的设计基于下面几个目标：</p>
@@ -250,6 +250,21 @@
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         

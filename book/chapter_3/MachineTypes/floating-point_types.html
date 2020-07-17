@@ -148,8 +148,8 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#浮点类型" id="浮点类型">浮点类型</a></h1>
-Rust提供IEEE单双精度的浮点了行。且遵循IEEE 754-2008规范，这些类型包含正负无穷，不同的正零和负零值以及一个非数字值：
-![](../../img/img-book/ch3-08.png)
+<p>Rust提供IEEE中的单双精度的浮点数，并遵循IEEE 754-2008规范，这些类型包含正负无穷，不同的正零和负零值以及一个非数字值：
+<img src="../../img/img-book/ch3-08.png" alt="" /></p>
 <p>Rust的<code>f32</code>和<code>f64</code>对应于支持IEEE浮点的C/C++实现的float和double类型，并且也对应于习惯使用IEEE浮点的Java。</p>
 <p>浮点字面量的一般形式如下图所示：
 <img src="../../img/img-book/ch3-09.png" alt="" />
@@ -227,6 +227,21 @@ Rust提供IEEE单双精度的浮点了行。且遵循IEEE 754-2008规范，这�
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         

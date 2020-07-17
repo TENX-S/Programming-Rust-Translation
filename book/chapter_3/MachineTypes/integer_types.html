@@ -148,7 +148,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#整数类型" id="整数类型">整数类型</a></h1>
-Rust的无符号整数类型全部用来表示正值和零：
+<p>Rust的无符号整数类型全部用来表示正值和零：</p>
 <p><img src="../../img/img-book/ch3-04.png" alt="" /></p>
 <p>Rust的带符号整数类型使用两者的补码表示形式，并使用与相应的无符号类型相同的位模式来覆盖正值和负值的范围：</p>
 <p><img src="../../img/img-book/ch3-05.png" alt="" /></p>
@@ -254,6 +254,21 @@ Rust的无符号整数类型全部用来表示正值和零：
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         

@@ -148,6 +148,29 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#类型安全" id="类型安全">类型安全</a></h1>
+<p>Rust是一门类型安全的语言。但此处我们所说的“类型安全”是什么意思呢？安全听起来是好事，但我们在哪些地方是安全的呢？</p>
+<p>这里是C语言1999标准即C99中关于未定义行为(undefined behavior)的定义：</p>
+<blockquote>
+<p><strong>未定义行为</strong></p>
+<p>不可移植的或使用错误程序构造或使用错误数据的行为，本国际标准不对此施加任何要求。</p>
+</blockquote>
+<p>考虑如下的一段C程序：</p>
+<pre><code class="language-c">int main(int argc, char **argv) {
+    unsigned long a[1];
+    a[3] = 0x7ffff7b36cebUL;
+    return 0;
+}
+</code></pre>
+<p>根据C99，因为这段程序访问了数组<code>a</code>末尾后的一个元素，故它的行为是未定义的，这意味着它可以做任何事情。当我们在Jim的笔记本上运行这段程序，得到了如下输出：</p>
+<pre><code class="language-shell">undef: Error: .netrc file is readable by others.
+undef: Remove password or make file unreadable by others.
+</code></pre>
+<p>然后奇怪的事情发生了，Jim的笔记本甚至都没有.netrc文件。如果你自己尝试，它可能会做一些完全不同的事情。</p>
+<p>C编译器为这个<code>main</code>函数生成的机器码恰好将数组<code>a</code>放在栈中返回地址前三个字的位置，所以在<code>a[3]</code>中存储<code>0x7ffff7b36cebUL</code>改变了<code>main</code>的返回地址使其只想C标准库的中间位置即像一个_.netrc_文件查询密码，当<code>main</code>返回时，程序并不是在<code>main</code>的调用中执行，而是在库中的机器码中继续执行：</p>
+<pre><code class="language-shell">warnx(_(&quot;Error: .netrc file is readable by others.&quot;));
+warnx(_(Remove password or make file unreadable by others.));
+</code></pre>
+<p>为了允许数组引用影响后续返回语句的行为，C编译器是完全符合标准的。一个未定义的操作不仅会产生未定义的结果：它还允许程序执行任何操作</p>
 
                     </main>
 
@@ -186,6 +209,21 @@
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         

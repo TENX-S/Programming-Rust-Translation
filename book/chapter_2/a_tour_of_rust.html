@@ -148,6 +148,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#第二章-一次rust之旅" id="第二章-一次rust之旅">第二章 一次Rust之旅</a></h1>
+<p>第二章并不重要，暂不做翻译。</p>
 
                     </main>
 
@@ -186,6 +187,21 @@
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         

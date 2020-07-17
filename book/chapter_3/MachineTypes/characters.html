@@ -148,8 +148,8 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#字符" id="字符">字符</a></h1>
-Rust的字符类型`char`代表了单个的32位的Unicode字符。
-Rust位单个字符单独使用`char`类型，但是为字符串和文字流使用UTF-8编码。所以，一个`String`表示它的文本是一个UTF-8的字节序列，而不是一个字符数组。
+<p>Rust的字符类型<code>char</code>代表了单个的32位的Unicode字符。
+Rust位单个字符单独使用<code>char</code>类型，但是为字符串和文字流使用UTF-8编码。所以，一个<code>String</code>表示它的文本是一个UTF-8的字节序列，而不是一个字符数组。</p>
 <p>字符字面量由单引号括起来的字符，像<code>'8'</code>或者<code>'!'</code>。你可以使用任何你喜欢的Unicode字符：<code>'錆'</code>是一个<code>char</code>字面量，表示日本汉字<em>sabi</em>(rust)。</p>
 <p>与字节文字一样，一些字符需要反斜杠转义：
 <img src="../img/img-book/ch3-11.png" alt="" /></p>
@@ -221,6 +221,21 @@ Rust位单个字符单独使用`char`类型，但是为字符串和文字流使�
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         

@@ -256,7 +256,31 @@
 <p>Rust不是一门真正的面向对象语言，尽管它具有一些面向对象的特性。Rust不是一门函数式编程语言，尽管它确实倾向于函数式编程那样，让计算结果的影响更加明确。Rust在某种程度上类似于C/C++，但这些语言的习惯用法却并不适用于Rust。因此，经典的Rust代码在很大程度上并不类似于C/C++的代码。所以最好还是保留对什么是Rust的判断，然后看看习惯了这种语言之后你的想法。</p>
 <p>为了在现实应用中获得设计上的反馈，Mozilla用Rust开发了一个新的Web浏览器引擎Servo，Servo的需求和Rust的愿景很好地匹配：浏览器性能良好并安全地处理不可信的数据。Servo使用Rust的安全并发性去处理C/C++无法并行化的工作。事实上，Servo和Rust是一起成长起来的，Servo使用最新的语言特性，而Rust则是根据Servo开发人员的反馈一点一点进化的。</p>
 <h1><a class="header" href="#类型安全" id="类型安全">类型安全</a></h1>
+<p>Rust是一门类型安全的语言。但此处我们所说的“类型安全”是什么意思呢？安全听起来是好事，但我们在哪些地方是安全的呢？</p>
+<p>这里是C语言1999标准即C99中关于未定义行为(undefined behavior)的定义：</p>
+<blockquote>
+<p><strong>未定义行为</strong></p>
+<p>不可移植的或使用错误程序构造或使用错误数据的行为，本国际标准不对此施加任何要求。</p>
+</blockquote>
+<p>考虑如下的一段C程序：</p>
+<pre><code class="language-c">int main(int argc, char **argv) {
+    unsigned long a[1];
+    a[3] = 0x7ffff7b36cebUL;
+    return 0;
+}
+</code></pre>
+<p>根据C99，因为这段程序访问了数组<code>a</code>末尾后的一个元素，故它的行为是未定义的，这意味着它可以做任何事情。当我们在Jim的笔记本上运行这段程序，得到了如下输出：</p>
+<pre><code class="language-shell">undef: Error: .netrc file is readable by others.
+undef: Remove password or make file unreadable by others.
+</code></pre>
+<p>然后奇怪的事情发生了，Jim的笔记本甚至都没有.netrc文件。如果你自己尝试，它可能会做一些完全不同的事情。</p>
+<p>C编译器为这个<code>main</code>函数生成的机器码恰好将数组<code>a</code>放在栈中返回地址前三个字的位置，所以在<code>a[3]</code>中存储<code>0x7ffff7b36cebUL</code>改变了<code>main</code>的返回地址使其只想C标准库的中间位置即像一个_.netrc_文件查询密码，当<code>main</code>返回时，程序并不是在<code>main</code>的调用中执行，而是在库中的机器码中继续执行：</p>
+<pre><code class="language-shell">warnx(_(&quot;Error: .netrc file is readable by others.&quot;));
+warnx(_(Remove password or make file unreadable by others.));
+</code></pre>
+<p>为了允许数组引用影响后续返回语句的行为，C编译器是完全符合标准的。一个未定义的操作不仅会产生未定义的结果：它还允许程序执行任何操作</p>
 <h1><a class="header" href="#第二章-一次rust之旅" id="第二章-一次rust之旅">第二章 一次Rust之旅</a></h1>
+<p>第二章并不重要，暂不做翻译。</p>
 <h1><a class="header" href="#下载和安装rust" id="下载和安装rust">下载和安装Rust</a></h1>
 <h1><a class="header" href="#一个简单的函数" id="一个简单的函数">一个简单的函数</a></h1>
 <h1><a class="header" href="#编写并运行单元测试" id="编写并运行单元测试">编写并运行单元测试</a></h1>
@@ -270,7 +294,7 @@
 <h1><a class="header" href="#一个并发的曼德勃罗程序" id="一个并发的曼德勃罗程序">一个并发的曼德勃罗程序</a></h1>
 <h1><a class="header" href="#运行曼德勃罗绘图器" id="运行曼德勃罗绘图器">运行曼德勃罗绘图器</a></h1>
 <h1><a class="header" href="#隐藏的安全性" id="隐藏的安全性">隐藏的安全性</a></h1>
-<h1 align="right">基本类型</h1>
+<h1><a class="header" href="#基本类型" id="基本类型">基本类型</a></h1>
 <p align="right" style="font-style: Italic;">世界上有许多种好书是因为有很多种人，并且每个人都想读点与众不同的东西。</p>
 <br /><p align="right">—Lemony Snicket<p>
 <p>Rust的基本类型的设计基于下面几个目标：</p>
@@ -335,14 +359,13 @@
 <li>我们在这里会介绍一些<code>String</code>和<code>&amp;str</code>的要点，但在第十七章中提供更多细节</li>
 <li>我们在第十四章介绍函数和闭包类型</li>
 </ul>
-<h2><a class="header" href="#机器类型" id="机器类型">机器类型</a></h2>
-<br />
-Rust的类型系统基于一组固定宽度的数字类型，并匹配几乎所有现代处理器直接在硬件中实现的类型，以及布尔和字符类型。
+<h1><a class="header" href="#机器类型" id="机器类型">机器类型</a></h1>
+<p>Rust的类型系统基于一组固定宽度的数字类型，并匹配几乎所有现代处理器直接在硬件中实现的类型，以及布尔和字符类型。</p>
 <p>Rust的数字类型的名称遵循常规模式，以位为单位拼写其宽度及其使用的表示形式：
 <img src="chapter_3/MachineTypes/../../img/img-book/ch3-03.png" alt="" /></p>
 <p>在这里，机器字是代码在运行的机器上的地址的大小，通常为32位或64位。<br /></p>
 <h1><a class="header" href="#整数类型" id="整数类型">整数类型</a></h1>
-Rust的无符号整数类型全部用来表示正值和零：
+<p>Rust的无符号整数类型全部用来表示正值和零：</p>
 <p><img src="chapter_3/MachineTypes/../../img/img-book/ch3-04.png" alt="" /></p>
 <p>Rust的带符号整数类型使用两者的补码表示形式，并使用与相应的无符号类型相同的位模式来覆盖正值和负值的范围：</p>
 <p><img src="chapter_3/MachineTypes/../../img/img-book/ch3-05.png" alt="" /></p>
@@ -411,8 +434,8 @@ Rust的无符号整数类型全部用来表示正值和零：
 </span></code></pre></pre>
 <p>这里的字面量的类型后缀是必需的：Rust如果不知道值的类型就不能寻找它的方法。在真实的代码中，然而，通常会有其他上下文来消除类型的歧义，因此后缀是非必需的。</p>
 <h1><a class="header" href="#浮点类型" id="浮点类型">浮点类型</a></h1>
-Rust提供IEEE单双精度的浮点了行。且遵循IEEE 754-2008规范，这些类型包含正负无穷，不同的正零和负零值以及一个非数字值：
-![](../../img/img-book/ch3-08.png)
+<p>Rust提供IEEE中的单双精度的浮点数，并遵循IEEE 754-2008规范，这些类型包含正负无穷，不同的正零和负零值以及一个非数字值：
+<img src="chapter_3/MachineTypes/../../img/img-book/ch3-08.png" alt="" /></p>
 <p>Rust的<code>f32</code>和<code>f64</code>对应于支持IEEE浮点的C/C++实现的float和double类型，并且也对应于习惯使用IEEE浮点的Java。</p>
 <p>浮点字面量的一般形式如下图所示：
 <img src="chapter_3/MachineTypes/../../img/img-book/ch3-09.png" alt="" />
@@ -466,8 +489,8 @@ Rust提供IEEE单双精度的浮点了行。且遵循IEEE 754-2008规范，这�
 <p>然而，<code>as</code>不会反方向转换，即从数字类型到<code>bool</code>。相反的，你必须明确地写出类似于<code>x != 0</code>这样的比较。</p>
 <p>尽管一个布尔值仅需一个位来表示它，Rust会使用内存中一整个字节在存储布尔值，所以你可以创建一个指向它的指针。</p>
 <h1><a class="header" href="#字符" id="字符">字符</a></h1>
-Rust的字符类型`char`代表了单个的32位的Unicode字符。
-Rust位单个字符单独使用`char`类型，但是为字符串和文字流使用UTF-8编码。所以，一个`String`表示它的文本是一个UTF-8的字节序列，而不是一个字符数组。
+<p>Rust的字符类型<code>char</code>代表了单个的32位的Unicode字符。
+Rust位单个字符单独使用<code>char</code>类型，但是为字符串和文字流使用UTF-8编码。所以，一个<code>String</code>表示它的文本是一个UTF-8的字节序列，而不是一个字符数组。</p>
 <p>字符字面量由单引号括起来的字符，像<code>'8'</code>或者<code>'!'</code>。你可以使用任何你喜欢的Unicode字符：<code>'錆'</code>是一个<code>char</code>字面量，表示日本汉字<em>sabi</em>(rust)。</p>
 <p>与字节文字一样，一些字符需要反斜杠转义：
 <img src="chapter_3/MachineTypes/../img/img-book/ch3-11.png" alt="" /></p>
@@ -501,15 +524,15 @@ Rust位单个字符单独使用`char`类型，但是为字符串和文字流使�
 <span class="boring">}
 </span></code></pre></pre>
 <p>自然，孤立的单个字符不如字符串和文本流那么有趣。我们将在本章的字符串类型这一节广泛地讨论Rust标准库中的<code>String</code>类型和文本处理。</p>
-<h2><a class="header" href="#元组" id="元组">元组</a></h2>
-元组是各种类型的若干元素的集合。你可以将一个元组写为一个用逗号分隔，圆括号括起的元素序列。例如，`('Brazil', 1985)`是一个元组，其第一个元素是静态分配的字符串，第二个元素是一个整数；它的类型是`(&str, i32)`（或者是任何Rust为1985推断出的整数类型）。给定一个元组`t`，你可以用`t.0`，`t.1`等等获取它的元素。
+<h1><a class="header" href="#元组" id="元组">元组</a></h1>
+<p>元组是各种类型的若干元素的集合。你可以将一个元组写为一个用逗号分隔，圆括号括起的元素序列。例如，<code>('Brazil', 1985)</code>是一个元组，其第一个元素是静态分配的字符串，第二个元素是一个整数；它的类型是<code>(&amp;str, i32)</code>（或者是任何Rust为1985推断出的整数类型）。给定一个元组<code>t</code>，你可以用<code>t.0</code>，<code>t.1</code>等等获取它的元素。</p>
 <p>元组不太像数组：一方面，元组的每个元素的类型可以互不相同，但数组的元素的类型必须一致。另外，元组只允许常数作为索引，像<code>t.4</code>。你不能写成<code>t.i</code>或者<code>t[i]</code>去索引第i个元素。</p>
 <p>Rust代码中元组类型常被用作从一个函数返回多个值。例如，<code>split_at</code>方法作用与字符串切片上，将一个字符串分为两半并返回它们，它的声明类似于这样：</p>
 <pre><pre class="playpen"><code class="language-rust">
 <span class="boring">#![allow(unused_variables)]
 </span><span class="boring">fn main() {
 </span>    fn split_at(&amp;self, mid: usize) -&gt; (&amp;str, &amp;str);
-    
+
 <span class="boring">}
 </span></code></pre></pre>
 <p>它的返回类型<code>(&amp;str, &amp;str)</code>是包含两个字符串切片的元组。你可以使用元组解构（pattern-matching syntax）将返回值的每个元素分配给不同的变量：</p>
@@ -545,7 +568,22 @@ fn write_image(filename: &amp;str, pixels: &amp;[u8], bounds: (usize, usize)) -&
 
 <span class="boring">}
 </span></code></pre></pre>
-<p><code>bound</code>参数的类型是<code>(usize, usize)</code>，即包含两个<code>usize</code>值的元组。我们固然可以把宽度和高度的参数分开写，并且这两种方式得到的机器码大致相同。这事关声明是否清楚，让人理解。我们将大小视为一个整体的值，而不是两个。使用元组可以让代码与我们的意愿一致。</p>
+<p><code>bound</code>参数的类型是<code>(usize, usize)</code>，即包含两个<code>usize</code>值的元组。我们固然可以把宽度和高度的参数分开写，并且这两种方式得到的机器码大致相同。这事关声明是否清楚，让人理解。我们将大小视为一个整体的值，而不是两个。使用元组可以让代码符合我们的意思。</p>
+<p>另一个或许让人觉得惊讶的常用的元组类型，是空元组<code>()</code>。传统意义上我们叫它单位类型，因为它只有一个值，也写作<code>()</code>。当没有一个有意义的值去表示但是上下文需要某种类型的时候，Rust使用这个单位类型。</p>
+<p>例如，一个不返回值的函数的返回类型是<code>()</code>，标准库中的<code>std::mem::swap</code>函数没有有意义的返回值；它只交换两个参数的值。<code>std::mem::swap</code>的声明如下：</p>
+<pre><pre class="playpen"><code class="language-rust">
+<span class="boring">#![allow(unused_variables)]
+</span><span class="boring">fn main() {
+</span>fn swap&lt;T&gt;(x: &amp;mut T, y: &amp;mut T);
+<span class="boring">}
+</span></code></pre></pre>
+<p>这个<code>&lt;T&gt;</code>说明了<code>swap</code>是泛型的：你可以使用任意T类型的值的引用。但是<code>swap</code>的函数签名完全省略了返回类型，也即返回单位类型的简写：</p>
+<pre><pre class="playpen"><code class="language-rust">
+<span class="boring">#![allow(unused_variables)]
+</span><span class="boring">fn main() {
+</span>fn swap&lt;T&gt;(x: &amp;mut T, y: &amp;mut T) -&gt; ();
+<span class="boring">}
+</span></code></pre></pre>
 <h1><a class="header" href="#指针类型" id="指针类型">指针类型</a></h1>
 <h1><a class="header" href="#引用" id="引用">引用</a></h1>
 <h1><a class="header" href="#盒子" id="盒子">盒子</a></h1>
@@ -938,6 +976,21 @@ fn write_image(filename: &amp;str, pixels: &amp;[u8], bounds: (usize, usize)) -&
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         
