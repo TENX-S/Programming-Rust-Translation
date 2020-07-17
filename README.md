@@ -27,7 +27,7 @@
 
 
 ## 加入我们!
-这个[项目](https://github.com/TENX-S/Programming-Rust-Translation)是开源的，如果您对Rust有相当程度的了解并对英语翻译有信心，欢迎提交您的译文。即使您只是Rust初学者，也可以将遇到的任何有关翻译上的疑惑反映到issues上。我们欢迎所有热情并充满信心的人。[如何贡献？](CONTRIBUTING.md)
+这个[项目](https://github.com/TENX-S/Programming-Rust-Translation)是开源的，如果您对Rust有相当程度的了解并对英语翻译有信心，欢迎PR。即使您只是Rust初学者，也可以将遇到的任何有关翻译上的疑惑反映到issues上。我们欢迎所有热情并充满信心的人。[如何贡献？](CONTRIBUTING.md)
 
 
 ## 作者
