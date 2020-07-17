@@ -33,12 +33,16 @@
 ## 作者
 
 
-<a
-    href="https://github.com/TENX-S">
+<a href="https://github.com/TENX-S">
     <img src="https://avatars1.githubusercontent.com/u/40336192?s=460&amp" width="60px">
-</a><a
-    href="https://github.com/KallenW">
+</a>
+
+<a href="https://github.com/KallenW">
     <img src="https://avatars2.githubusercontent.com/u/66395882?s=460&amp" width="60px">
+</a>
+
+<a href="https://github.com/nobodyineverywhere">
+    <img src="https://avatars0.githubusercontent.com/u/68425063?s=460&u=f8092416a9b3c509ad593e0e60106514e1c3854f&v=4" width="60px">
 </a>
 
 
