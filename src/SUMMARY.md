@@ -1,5 +1,5 @@
 # 《Programming Rust》中文版
-[介绍](Introduction.md)
+[介绍](README.md)
 [序言](preface.md)
 
 
