@@ -6,7 +6,6 @@ Rust的`as`算子可以将bool类型转为整数类型：
 ```rust
     assert_eq!(false as i32, 0);
     assert_eq!(true  as i32, 1);
-
 ```
 然而，`as`不会反方向转换，即从数字类型到`bool`。相反的，你必须明确地写出类似于`x != 0`这样的比较。
 

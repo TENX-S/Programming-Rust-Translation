@@ -20,19 +20,18 @@ Rust的`f32`和`f64`对应于支持IEEE浮点的C/C++实现的float和double类�
     assert_eq!(5f32.sqrt() * 5f32.sqrt(), 5.);
     assert_eq!(-1.01f64.floor(), -1.0);
     assert!((-1. / std::f32::INFINITY).is_sign_negative());
-
 ```
 正如之前所述，通常在实际代码中，你不需要写这些类型后缀因为上文会决定这些类型。然而，如果不是这样，由此引发的错误信息会令人惊讶。举例，下面这行代码无法通过编译：
 ```rust
     println!("{}", (2.0).sqrt());
-
 ```
 Rust提出:
-            <pre>error: no method named sqrt found for type \`{float}\` in the current scope</pre>
+```shell
+error: no method named sqrt found for type \`{float}\` in the current scope
+```
 这令人意想不到；除了浮点类型，还有哪里能找到`sqrt`方法呢？解决的办法是用一种或另一种方式声明你想要的类型：
 ```rust
     println!("{}", (2.0_f64).sqrt());
     println!("{}", f64::sqrt(2.0));
-
 ```
 不同于C/C++，Rust几乎没有隐式类型转换。如果一个函数需要一个`f64`的参数，则传递`i32`的值作为其参数是错误的。事实上，即时每个`i16`的值都是`i32`的值，Rust也不会将`i16`的值隐式转换为`i32`的值。但是这里的关键词是*隐含的*：你始终可以使用`as`运算符写出明确的转换：`i as f64`或者`x as i32`。缺少隐式转换会使得Rust的表达式相较于类似的C/C++代码更冗长。然而，有一份完善的记录表明，隐式整数转换会引起错误和安全漏洞；根据我们的经验，在Rust中写出数字转换使我们警惕了本来会错过的问题。我们会在第六章：表达式中类型转换这一节解释转换的细节。
